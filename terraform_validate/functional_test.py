@@ -403,7 +403,5 @@ class TestValidatorFunctional(unittest.TestCase):
 
         tagged_buckets = validator.resources("aws_s3_bucket").with_property("tags", ".*'CustomTag': 'CustomValue'.*")
 
-        print(tagged_buckets.__dict__)
-
         with self.assertRaisesRegexp(AssertionError, expected_error):
             tagged_buckets.property("policy").should_contain_valid_json()
