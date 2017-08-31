@@ -401,7 +401,7 @@ class TestValidatorFunctional(unittest.TestCase):
         
         expected_error = self.error_list_format("[aws_s3_bucket.tagged_bucket.policy] is not valid json")
 
-        tagged_buckets = validator.resources("aws_s3_bucket").with_property("tags", ".*'CustomTag': 'CustomValue'.*")
+        tagged_buckets = validator.resources("aws_s3_bucket").with_property("tags", ".*'CustomTag':.*'CustomValue'.*")
 
         with self.assertRaisesRegexp(AssertionError, expected_error):
             tagged_buckets.property("policy").should_contain_valid_json()
